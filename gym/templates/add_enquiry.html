@@ -1,0 +1,47 @@
+{% extends 'navigation.html' %}
+{% block body %}
+
+
+<div class="container" style="margin-top:60px">
+   <h2 class="text-center text-primary font-weight-bold">Add Enquiry</h2>
+   <form method="POST">
+      {% csrf_token%}
+      <label><b>Name</b></label>
+      <input type="text" name="name" class="form-control" required>
+
+      <label><b>Contect</b></label>
+      <input type="text" name="contect" class="form-control"required>
+
+      <label><b>Email</b></label>
+      <input type="text" name="emailid" class="form-control" required>
+
+      <label><b>Age</b></label>
+      <input type="text" name="age" class="form-control" required>
+       </br>
+      <label><b>Gender</b></label>
+      <input type="radio" name="gender" value="male">Male
+      <input type="radio" name="gender" value="female">Female
+      </br>
+      </br>
+      <input type="submit" velue="Submit" class="form-control btn btn-primary">
+
+   </form>
+
+</div>
+
+{% ifequal error "no" %}
+<script>
+   alert('Record Saved Successfully!');
+   window.location = ('/view_enquiry');
+</script>
+{% endifequal %}
+
+
+{% ifequal error "yes" %}
+<script>
+   alert('Something Went wrong!  , Try Again');
+
+</script>
+{% endifequal %}
+
+{% endblock %}

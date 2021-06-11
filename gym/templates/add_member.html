@@ -1,0 +1,66 @@
+{% extends 'navigation.html' %}
+{% block body %}
+
+
+<div class="container" style="margin-top:60px">
+   <h2 class="text-center text-primary font-weight-bold">Add Member</h2>
+   <form method="POST">
+      {% csrf_token%}
+      <label><b>Name</b></label>
+      <input type="text" name="name" class="form-control" required>
+
+      <label><b>Contect</b></label>
+      <input type="text" name="contect" class="form-control"required>
+
+      <label><b>Email</b></label>
+      <input type="text" name="emailid" class="form-control" required>
+
+      <label><b>Age</b></label>
+      <input type="text" name="age" class="form-control" required>
+       
+      <label><b>Gender</b></label>
+      <input type="radio" name="gender" value="male">Male
+      <input type="radio" name="gender" value="female">Female
+       <br>
+      <label><b>Plan Name</b></label>
+        <select class="form-select" aria-label="Default select example">
+        {% for i in plan %}
+        
+        <option value="{{i.name}}">{{i.name}}</option>
+        
+        {% endfor %}
+        </select>
+      
+
+      <label><b>JoinDate</b></label>
+      <input type="date" name="joindate" class="form-control"required>
+
+      <label><b>Plan Expire Date</b></label>
+      <input type="date" name="expiredate" class="form-control" required>
+
+      <label><b>InitialAmount</b></label>
+      <input type="text" name="Initialamount" class="form-control" required>
+       </br>
+      </br>
+      <input type="submit" velue="Submit" class="form-control btn btn-primary">
+
+   </form>
+
+</div>
+
+{% ifequal error "no" %}
+<script>
+   alert('Record Saved Successfully!');
+   window.location = ('/view_member');
+</script>
+{% endifequal %}
+
+
+{% ifequal error "yes" %}
+<script>
+   alert('Something Went wrong!  , Try Again');
+
+</script>
+{% endifequal %}
+
+{% endblock %}
